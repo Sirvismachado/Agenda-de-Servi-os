@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamento Barbearia</title>
+<link rel="stylesheet" href="style.css">
+    
+
+</head>
+<body>
+
+  <div class="container">
+    <h1>Agendar</h1>
+
+    <label>Barbeiro:</label>
+    <select id="barber">
+      <option value="1">Mário</option>
+      <option value="2">Leandro</option>
+      <option value="3">Cleber</option>
+      <option value="4">João</option>
+    </select>
+
+    <label>Serviço:</label>
+    <select id="service">
+      <option value="1">Corte (30min)</option>
+      <option value="2">Corte e Barba (60min)</option>
+      <option value="3">Barba(15min)</option>
+      </select>
+     
+
+    <label>Data:</label>
+    <input type="date" id="date">
+
+    <button onclick="loadAvailability()">Ver horários</button>
+
+    <div id="slots"></div>
+  </div>
+<script src="scripts/index.js"></script>
+  
+</body>
+</html>
