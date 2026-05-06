@@ -62,7 +62,7 @@ body::before {
 #barberName {
   text-align: center;
   color: #ffc15e;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -93,7 +93,7 @@ button:hover {
 /* BOTÃO SAIR */
 .panel-header button {
   padding: 8px 12px;
-  font-size: 12px;
+  font-size: 20px;
 }
 
 /* LISTA */

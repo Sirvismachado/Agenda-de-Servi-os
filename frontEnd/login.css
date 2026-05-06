@@ -40,7 +40,7 @@ body::before {
 .login-container {
   z-index: 1;
   background: #523a34;
-  padding: 30px;
+  padding: 40px;
   border-radius: 12px;
   width: 320px;
 
@@ -56,4 +56,30 @@ header {
   justify-content: space-between;
   color: white;
   z-index: 2; /* IMPORTANTE */
+}
+
+.login-container input {
+  height: 45px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+label {
+  font-size: 18px;
+  color: #ccc;
+}
+h2 {
+  text-align: center;
+  color: #ffc15e;
+}
+
+button {
+  height: 45px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+  background-color: #ffc15e;
 }
