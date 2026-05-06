@@ -4,7 +4,10 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #0f172a;
+      background-image: url(imagens/photo-1536520002442-39764a41e987.avif);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
       font-family: Arial;
     }
 
@@ -17,6 +20,7 @@ body {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      text-align: center;
     }
 
     input, button {
@@ -29,3 +33,4 @@ body {
       background: #38bdf8;
       cursor: pointer;
     }
+    
