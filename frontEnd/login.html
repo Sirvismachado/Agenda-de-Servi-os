@@ -1,27 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Login Barbeiro</title>
-  <link rel="stylesheet" href="login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login Barbeiro</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <header>
+      <h3>💈 Barbearia</h3>
+      <nav>
+        <a href="inicio.html" style="margin-right: 15px; color: white"
+          >Início</a
+        >
+        <a href="index.html" style="margin-right: 15px; color: white"
+          >Agendar</a
+        >
+        <a href="login.html" style="color: white">Barbeiro</a>
+      </nav>
+    </header>
+    <div class="login-container">
+      <h2>Login do Barbeiro</h2>
 
+      <label>Usuário:</label>
+      <input type="text" id="user" />
 
-</head>
-<body>
+      <label>Senha:</label>
+      <input type="password" id="pass" />
 
-<div class="box">
-  <h2>Login Barbeiro</h2>
-  <h3 id="welcome"></h3>
+      <button onclick="login()">Entrar</button>
+    </div>
 
-  <input type="text" id="user" placeholder="Usuário">
-  <input type="password" id="pass" placeholder="Senha">
-
-  <button onclick="login()">Entrar</button>
-</div>
-
-<script src="scripts/login.js">
-
-</script>
-
-</body>
+    <script src="scripts/login.js"></script>
+  </body>
 </html>

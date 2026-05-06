@@ -1,18 +1,31 @@
 // duração dos serviços (em minutos)
 const services = {
-  1: { duration: 30, name: "Corte" },
-  2: { duration: 60, name: "Corte e Barba" },
-  3: { duration: 15, name: "Barba" },
+  1: 30,
+  2: 60,
+  3: 15
 };
 
-// sempre pega atualizado
-function getAppointments() {
-  return JSON.parse(localStorage.getItem("appointments")) || [];
-}
-
-function saveAppointments(data) {
-  localStorage.setItem("appointments", JSON.stringify(data));
-}
+// simulação de banco de dados (agendamentos já feitos)
+const appointments = [
+  {
+    barber: "1",
+    date: "2026-05-06",
+    start: "09:00",
+    duration: 30
+  },
+  {
+    barber: "1",
+    date: "2026-05-06",
+    start: "10:00",
+    duration: 60
+  },
+  {
+    barber: "2",
+    date: "2026-05-06",
+    start: "09:30",
+    duration: 30
+  }
+];
 
 function loadAvailability() {
   const barber = document.getElementById("barber").value;
@@ -24,34 +37,25 @@ function loadAvailability() {
     return;
   }
 
-  const { duration, name } = services[service];
+  const duration = services[service];
 
-  generateSlots(barber, date, duration, name);
+  generateSlots(barber, date, duration);
 }
 
-function generateSlots(barber, date, duration, serviceName) {
+function generateSlots(barber, date, duration) {
   const slotsDiv = document.getElementById("slots");
   slotsDiv.innerHTML = "";
-
-  const appointments = getAppointments();
 
   const startHour = 9;
   const endHour = 18;
 
   for (let h = startHour; h < endHour; h++) {
     for (let m of [0, 30]) {
+
       let start = new Date(`${date}T${pad(h)}:${pad(m)}:00`);
       let end = new Date(start.getTime() + duration * 60000);
 
-      // 🚫 bloqueia horários que ultrapassam expediente
-      if (
-        end.getHours() > endHour ||
-        (end.getHours() === endHour && end.getMinutes() > 0)
-      ) {
-        continue;
-      }
-
-      const isBusy = appointments.some((app) => {
+      const isBusy = appointments.some(app => {
         if (app.barber !== barber || app.date !== date) return false;
 
         let appStart = new Date(`${app.date}T${app.start}:00`);
@@ -65,32 +69,26 @@ function generateSlots(barber, date, duration, serviceName) {
       div.innerText = `${pad(h)}:${pad(m)}`;
 
       if (isBusy) {
-        div.style.background = "#7f1d1d";
-        div.innerText += " (ocupado)";
+  div.style.background = "#7f1d1d";
+  div.innerText += " (cancelar)";
+
+  div.onclick = () => {
+    if (confirm("Deseja cancelar este horário?")) {
+      cancelAppointment(barber, date, `${pad(h)}:${pad(m)}`);
+    }
+  };
+
       } else {
         div.style.background = "#065f46";
         div.innerText += " (livre)";
 
         div.onclick = () => {
-          let client = prompt("Nome do cliente:");
-
-          if (!client || client.trim() === "") {
-            alert("Nome inválido");
-            return;
-          }
-
-          const updated = getAppointments();
-
-          updated.push({
+          appointments.push({
             barber,
             date,
             start: `${pad(h)}:${pad(m)}`,
-            duration,
-            service: serviceName,
-            client: client.trim(),
+            duration
           });
-
-          saveAppointments(updated);
 
           alert("Agendado!");
           loadAvailability();
@@ -106,18 +104,15 @@ function pad(n) {
   return n.toString().padStart(2, "0");
 }
 
-// opcional: manter cancelamento aqui também
 function cancelAppointment(barber, date, time) {
-  let appointments = getAppointments();
-
-  const index = appointments.findIndex(
-    (app) => app.barber === barber && app.date === date && app.start === time,
+  const index = appointments.findIndex(app =>
+    app.barber === barber &&
+    app.date === date &&
+    app.start === time
   );
 
   if (index !== -1) {
     appointments.splice(index, 1);
-    saveAppointments(appointments);
-
     alert("Agendamento cancelado!");
     loadAvailability();
   }

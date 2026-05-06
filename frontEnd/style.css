@@ -13,7 +13,6 @@ body {
   justify-content: center;
   align-items: center;
   font-family: Arial, sans-serif;
-
 }
 
 body::before {
@@ -30,76 +29,74 @@ body::before {
 
 .container {
   z-index: 1;
-  background: rgba(30, 41, 59, 0.95);
+  background: #523a34;
   padding: 30px;
   border-radius: 12px;
   width: 350px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
   display: flex;
   flex-direction: column;
   gap: 15px; /* espaçamento interno */
 }
-  
 
-    h1 {
-      color: white;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    label {
-      color: white;
-      font-size: 14px;
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 5px;
-    }
+label {
+  font-size: 14px;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 
-    select, input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
+select,
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #38bdf8;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.2s;
-    }
+button {
+  width: 100%;
+  padding: 12px;
+  background: #9b6928;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s;
+}
 
-    button:hover {
-      background: #FFC15E;
-    }
+button:hover {
+  background: #ffc15e;
+}
 
-    #slots {
-      margin-top: 15px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
+#slots {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
 
-    #slots button {
-      background: #334155;
-      padding: 8px;
-      font-size: 12px;
-    }
+#slots button {
+  background: #334155;
+  padding: 8px;
+  font-size: 12px;
+}
 
-    #slots button:hover {
-      background: #475569;
-    }
+#slots button:hover {
+  background: #475569;
+}
 
-    .slot {
+.slot {
   padding: 10px;
   margin-top: 5px;
   border-radius: 6px;
