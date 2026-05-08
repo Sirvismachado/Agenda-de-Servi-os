@@ -1,4 +1,18 @@
 body {
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  background-image: url("https://media.istockphoto.com/id/1973192500/pt/foto/interior-of-a-modern-barber-shop-before-opening-hours.jpg?s=612x612&w=0&k=20&c=njuo6LcupWuDjXCjwvf1HFVyKDrGMF_vQQHuE9ucJSg=");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  position: relative;
   height: 100vh;
   margin: 0;
 
@@ -9,6 +23,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 body::before {

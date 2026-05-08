@@ -122,3 +122,102 @@ function cancelAppointment(barber, date, time) {
     loadAvailability();
   }
 }
+// ==========================
+// RANDOM API - AGENDAMENTOS AUTOMÁTICOS
+// ==========================
+
+async function generateFakeAppointments() {
+  // evita duplicar sempre que atualizar página
+  const alreadyGenerated = localStorage.getItem("fakeAppointmentsGenerated");
+
+  if (alreadyGenerated) return;
+
+  try {
+    // pega nomes aleatórios
+    const response = await fetch("https://randomuser.me/api/?results=20");
+
+    const data = await response.json();
+
+    const fakeUsers = data.results;
+
+    let appointments = getAppointments();
+
+    const barberIds = ["1", "2", "3", "4"];
+    const servicesIds = ["1", "2", "3"];
+
+    fakeUsers.forEach((user) => {
+      const barber = barberIds[Math.floor(Math.random() * barberIds.length)];
+
+      const serviceId =
+        servicesIds[Math.floor(Math.random() * servicesIds.length)];
+
+      const service = services[serviceId];
+
+      // próximos 7 dias
+      const randomDay = Math.floor(Math.random() * 7);
+
+      const dateObj = new Date();
+
+      dateObj.setDate(dateObj.getDate() + randomDay);
+
+      const date = dateObj.toISOString().split("T")[0];
+
+      // horários possíveis
+      const possibleHours = [
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+      ];
+
+      const start =
+        possibleHours[Math.floor(Math.random() * possibleHours.length)];
+
+      // evita conflitos
+      const conflict = appointments.some((app) => {
+        if (app.barber !== barber || app.date !== date) return false;
+
+        let appStart = new Date(`${app.date}T${app.start}:00`);
+        let appEnd = new Date(appStart.getTime() + app.duration * 60000);
+
+        let newStart = new Date(`${date}T${start}:00`);
+        let newEnd = new Date(newStart.getTime() + service.duration * 60000);
+
+        return newStart < appEnd && newEnd > appStart;
+      });
+
+      if (!conflict) {
+        appointments.push({
+          barber,
+          date,
+          start,
+          duration: service.duration,
+          service: service.name,
+          client: `${user.name.first} ${user.name.last}`,
+        });
+      }
+    });
+
+    saveAppointments(appointments);
+
+    localStorage.setItem("fakeAppointmentsGenerated", "true");
+
+    console.log("Agendamentos fake gerados!");
+  } catch (error) {
+    console.error("Erro ao gerar agendamentos:", error);
+  }
+}
+
+// executa automaticamente
+generateFakeAppointments();
