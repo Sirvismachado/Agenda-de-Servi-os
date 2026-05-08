@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+
+  min-height: 100vh;
+
+  background-image: url("https://media.istockphoto.com/id/1973192500/pt/foto/interior-of-a-modern-barber-shop-before-opening-hours.jpg?s=612x612&w=0&k=20&c=njuo6LcupWuDjXCjwvf1HFVyKDrGMF_vQQHuE9ucJSg=");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+body::before {
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  z-index: 0;
+}
+
+.login-container {
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+
+  max-width: 400px;
+
+  padding: 35px;
+
+  border-radius: 16px;
+
+  background: #523a34;
+}
+
+h2 {
+  text-align: center;
+
+  color: #ffc15e;
+}
+
+.form-label {
+  color: #f1f1f1;
+}
+
+.btn-warning {
+  background: #9b6928;
+
+  border: none;
+
+  color: white;
+
+  font-weight: bold;
+}
+
+.btn-warning:hover {
+  background: #ffc15e;
+
+  color: black;
+}
+
+.nav-link:hover {
+  color: #ffc15e !important;
+}
+
+@media (max-width: 768px) {
+  nav {
+    justify-content: center;
+  }
+
+  header h3 {
+    margin-bottom: 10px;
+  }
+
+  .login-container {
+    padding: 25px;
+  }
+}

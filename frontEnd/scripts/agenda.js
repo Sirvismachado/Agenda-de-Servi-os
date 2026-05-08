@@ -5,11 +5,11 @@ function renderAppointments() {
   const listDiv = document.getElementById("appointmentsList");
   listDiv.innerHTML = "";
 
-  const filtered = appointments.filter(app =>
-    app.barber === barber && app.date === date
+  const filtered = appointments.filter(
+    (app) => app.barber === barber && app.date === date,
   );
 
-  filtered.forEach(app => {
+  filtered.forEach((app) => {
     const div = document.createElement("div");
     div.className = "slot";
     div.style.background = "#1e293b";
